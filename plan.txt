@@ -1,0 +1,56 @@
+Keywords include:
+  Type of question - what/why/do you/who/when/where
+  Subject of question - Job/Hobbies/Food/Family/Music/Country
+
+Things about the person:
+	Name
+	Gender
+	Sexual orientation
+	Age
+		Birthday
+	Height
+	Weight
+	Country of origin
+		Home location
+		Ethnicity
+	Job
+		Income
+		Enjoybility
+		Time
+	Relationships
+		Siblings
+		Parents
+		Grandparents
+		Extended family
+		Partner
+		Friends
+	Hobbies
+		Sports
+		General activities
+		Music
+	Feelings
+	Opinions
+	
+
+Types of question:
+	What - noun
+	Why - compound/complex
+	How - compound/complex (hardcode "How old are you?")
+	Do you - yes/no
+	Who - person
+	When - time/place
+	Where - place
+
+Error handling:
+  If question not recognised/if no keywords recognised - "I do not understand"
+
+Architecture:
+	User inputs question
+	Question is parsed for keywords which indicate
+		Type of question - do you/who/what
+		Who the question is about - you/your
+		What the subject of the question is - job/career
+	Depending on who the question is about the question is either
+		Looked up on google
+		Looked up for keywords which may match 
+		Looked up for facts about Clarence
