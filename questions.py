@@ -24,7 +24,7 @@ opinion_kws = ["which"]
 unknown_kws = [ "how", "what", "why"]
 yes_no_kws = ["have", "did", "are"]
 
-def is_directed_at_bot(question: list[str]) -> bool:
+def is_directed_at_bot(question):
     """ Checks if the question is directed towards the bot or not.
     If it is the bot should either look up an answer or randomly generate one.
     If it isn't the bot should look it up on google."""
@@ -34,7 +34,7 @@ def is_directed_at_bot(question: list[str]) -> bool:
     return False
 
 
-def type_of_q(question: list[str]) -> QType:
+def type_of_q(question):
     """Finds all the possible types of question which QType might be"""
     do = False
     for i in question:
