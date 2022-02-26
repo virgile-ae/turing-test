@@ -1,9 +1,10 @@
 # Turing Test
 # List who is in the group or if you are working alone.
 # Shaurya and Virgile
+from enjoy import yes_no
 import prompt
 import keywords
-from questions import is_directed_at_bot
+from questions import QType, is_directed_at_bot, type_of_q
 from query import fetch_answer
 from synonyms import synonym_for
 
@@ -16,14 +17,19 @@ for i in range(3):
 	type = []
 	subject = []
 	if is_directed_at_bot(question):
-		for j in question:
-			if j in ["a", "the"]:
-				# Skip a or the
-				continue
-			elif j in keywords.keywords:
-				print(f"Found keyword {j}")
+		type = type_of_q(question)
+		if type == QType.Fact:
+			pass
+		elif type == QType.Opinion:
+			pass
+		elif type == QType.Unknown:
+			pass
+		elif type == QType.Yes_No:
+			print(yes_no())
+			continue
 	else:
 		# need to find subject
+		print("debugging: google search")
 		for i in question:
 			if i in keywords.keywords:
 				syn, success = synonym_for(i)
@@ -32,8 +38,6 @@ for i in range(3):
 				else:
 					print("i dunno. go look it up")	
 				break
-				
-					
 
 # Clarence excuses himself
 prompt.outro()
