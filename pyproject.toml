@@ -1,13 +1,10 @@
 [tool.poetry]
 name = "repl_python3_The-Turing-Test-L5CSY-DJH-4"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 openai = "^0.15.0"
-bs4 = "^0.0.1"
 
 [tool.poetry.dev-dependencies]
 

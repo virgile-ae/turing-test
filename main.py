@@ -5,10 +5,10 @@ import prompt
 import loop
 
 # Clarence introduces himself
-prompt.intro()
+name = prompt.intro()
 
 # The three questions to clarence
-for i in range(3):
-	loop.handle_q(i)
+for i in range(5):
+    loop.handle_q(name)
 # Clarence excuses himself
 prompt.outro()

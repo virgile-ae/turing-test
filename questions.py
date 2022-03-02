@@ -6,27 +6,25 @@
 #		Do you like - random yes or no
 #		What do you think of - random i do(n't) like (thing) very much
 # 		How is - random it is(n't) bad
-import re
+from re import findall
 from enum import Enum
-from enjoy import opinion_on, yes_no,parse_subject_after_any
-from keywords import find_keywords
-from clarence import clarence
+from enjoy import rand_opinion_on, rand_yes_no, parse_subject_after_any, rand_elem
+from clarence import clarence, find_keywords
 
 class QType(Enum):
     Fact = 0
     Opinion = 1
-    Unknown = 2
     Yes_No = 3
     Not_Q = 4
+
 
 # Words which indicate that the question is for the bot (as opposed to general facts)
 qs_for_bot = ["you", "your", "clarence", "yours"]
 
-fact_kws = ["can", "when", "who", "whose", "where", "when", "what", "does"]
-opinion_kws = ["which"]
+fact_kws = ["can", "when", "who", "whose", "where", "when", "what", "does", "how", "what"]
+opinion_kws = ["which", "think", "why"]
 # might depend on whether it is personal or not
-unknown_kws = [ "how", "what", "why"]
-yes_no_kws = ["have", "did", "are"]
+yes_no_kws = ["have", "did", "are", "do", "will", "is"]
 
 
 def any_in(words, sentence):
@@ -35,6 +33,7 @@ def any_in(words, sentence):
         if word in sentence:
             return True
     return False
+
 
 def is_directed_at_bot(question):
     """ Checks if the question is directed towards the bot or not.
@@ -45,6 +44,7 @@ def is_directed_at_bot(question):
             return True
     return False
 
+
 def type_of_q(question):
     """Finds all the possible types of question which QType might be"""
     do = False
@@ -54,29 +54,30 @@ def type_of_q(question):
             return QType.Fact
         elif t in opinion_kws:
             return QType.Opinion
-        elif t in unknown_kws:
-            return QType.Unknown
         elif t in yes_no_kws:
-            return QType.Yes_No    
-        elif t in ["do", "doing", "done"] :
+            return QType.Yes_No
+        elif t in ["do", "doing", "done"]:
             do = True
     if do:
         return QType.Yes_No
     return QType.Not_Q
 
+
 def parse_question(question):
     """Parses question, removing useless words and any punctuation."""
     # Splits into words, ignoring any punctuation
-    words = list(re.findall(r"[\w']+", question))
+    words = list(findall(r"[\w']+", question))
     return words, is_directed_at_bot(words)
+
 
 def handle_yes_no(question):
     """Handles a yes or no question"""
-    
     if "do" in question:
+
         if any_in(["like", "enjoy"], question):
             kws = ["enjoy", "like"]
-            print(opinion_on(" ".join(parse_subject_after_any(kws, question))))
+            print(rand_opinion_on(" ".join(parse_subject_after_any(kws, question))))
+
         elif any_in(["have", "own"], question):
             keywords = find_keywords(question)
             if clarence[keywords[[0]]]:
@@ -85,14 +86,10 @@ def handle_yes_no(question):
                 print(f"sadly not")
     elif "have" in question or "will" in question:
         kws = ["been", "gone", "be", "go"]
-        filt = ["recently", "yesterday", "today"]
-        print(opinion_on(" ".join(parse_subject_after_any(kws, question))))
+        print(rand_opinion_on(" ".join(parse_subject_after_any(kws, question))))
     else:
-        print(yes_no())
-        
-def handle_unknown():
-    pass
-def handle_fact():
-    pass
+        print(rand_yes_no())
+
 def handle_opinion():
-    pass
+    opinions = ["i don't really know to be honest", "maybe", "i'm not quite sure"]
+    return rand_elem(opinions)
