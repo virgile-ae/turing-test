@@ -1,18 +1,39 @@
 # Contains functions to handle questions about enjoyment
-from random import getrandbits 
+from random import getrandbits, randint
 
-# Returns a random bool which can be used to make decisions about whether or not clarence enjoys something
 def rand_bool():
-	return not getrandbits(1)
+    """Returns a random bool which can be used to make decisions about whether or not clarence enjoys something."""
+    return not getrandbits(1)
 
-# Generates a response about question asking about an opinion on something
+def rand_elem(elems):
+    """Returns a random element from a list."""
+    index = randint(0, len(elems)-1)
+    return elems[index]
+
 def opinion_on(kw):
-	if rand_bool():
-		return f"to be perfectly honest, i don't really like {kw}"
-	return f"i actually quite like {kw}"
+    """Generates a response about question asking about an opinion on something."""
+    if rand_bool():
+        return f"to be perfectly honest, i don't really like {kw}, so nah"
+    return f"i actually quite like {kw}, so yeh"
 
-# Random reply to a yes-no question
+
+def parse_subject_after_any(kws, words):
+    """Finds the subject of a 'do you like' question"""
+   
+    index = 0
+    for i in kws:
+        if i in words:
+            try: 
+                index = words.index(i) + 1
+            except:
+                pass
+    return words[index:]
+
+yes = ["yep", "yes", "totally", "kinda", "maybe"]
+no = ["nah", "not really", "very little", "don't remember"]
+
 def yes_no():
-	if rand_bool():
-		return "yep"
-	return "nah"
+    """Random reply to a yes-no question."""
+    if rand_bool():
+        return rand_elem(yes)
+    return rand_elem(no)

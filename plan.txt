@@ -18,7 +18,7 @@ Things about the person:
 		Enjoybility
 		Time
 	Relationships
-		Siblings
+		Siblings  
 		Parents
 		Grandparents
 		Extended family

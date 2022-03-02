@@ -1,25 +1,29 @@
-# Contains functions used to query google and get the answer
+"""# Contains functions used to query google and get the answer
+#  DEPRECIATED :: DON'T USE THIS
 import requests
 from bs4 import BeautifulSoup
 
 base_url = "https://www.google.com/search?q="
 headers = {
-    "User-Agent":
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3283.186 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3283.186 Safari/537.36"
 }
 
 # Contains the css classes of the answer box for different types of questions
 qsubject_class = {
-	"age": "Z0LcW",
-	"birthday": "Z0LcW",
-	"backup": "hgKElc",
-	"date": "zCubwf",
-	"description": "PZPZlf hb8SAc",
+    "age": "Z0LcW",
+    "birthday": "Z0LcW",
+    "backup": "hgKElc",
+    "date": "zCubwf",
+    "description": "PZPZlf hb8SAc",
 }
 
+# Asks the user what their next question is
+def ask_question(n):
+	print(f"You have {n} questions left.")
+	return input("What is your question: ")
+
 def build_url(question):
-	formatted = "+".join(question)
-	return base_url + formatted + "&hl=en"
+    return base_url + "+".join(question) + "&hl=en"
 
 # Scrapes google for answers with a backup
 def fetch_answer(question, q_type):
@@ -35,4 +39,4 @@ def fetch_answer(question, q_type):
 			res = soup.find("span", class_=qsubject_class["backup"])
 			return res.text
 		except:
-			return "i dunno"
+			return "i dunno"   """

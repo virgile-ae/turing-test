@@ -6,8 +6,8 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+openai = "^0.15.0"
 bs4 = "^0.0.1"
-beautifulsoup4 = "^4.10.0"
 
 [tool.poetry.dev-dependencies]
 

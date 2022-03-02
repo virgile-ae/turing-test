@@ -1,14 +1,15 @@
 # Contains functions which are used for the command prompt
 
-# Introduces clarence
 def intro():
-	print("Hello, my name is Clarence Smith. Feel free to ask me any questions.")
+    """Introduces clarence to the user."""
+    print("Hello, my name is Clarence Smith. Feel free to ask me any questions.")
+    print("By the way, I have severe memory issues so please take that into consideration.")
 
-# Excuses clarence
 def outro():
-	print("Well it's been nice, but I have to go. See ya later.")
+    """Excuses clarence from the conversation."""
+    print("Well it's been nice, but I have to go. See ya later.")
 
-# Asks the user what their next question is
 def ask_question(n):
-	print(f"You have {n} questions left.")
-	return input("What is your question: ")
+    """Asks the user what their next question is."""
+    print(f"You have {n} questions left.")
+    return input("What is your question: ")
