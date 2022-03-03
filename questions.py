@@ -8,8 +8,6 @@
 # 		How is - random it is(n't) bad
 from re import findall
 from enum import Enum
-from enjoy import rand_opinion_on, rand_yes_no, parse_subject_after_any, rand_elem
-from clarence import clarence, find_keywords
 
 class QType(Enum):
     Fact = 0
@@ -69,27 +67,3 @@ def parse_question(question):
     words = list(findall(r"[\w']+", question))
     return words, is_directed_at_bot(words)
 
-
-def handle_yes_no(question):
-    """Handles a yes or no question"""
-    if "do" in question:
-
-        if any_in(["like", "enjoy"], question):
-            kws = ["enjoy", "like"]
-            print(rand_opinion_on(" ".join(parse_subject_after_any(kws, question))))
-
-        elif any_in(["have", "own"], question):
-            keywords = find_keywords(question)
-            if clarence[keywords[[0]]]:
-                print(f"yes i do have a {clarence[keywords[0]]}")
-            else:
-                print(f"sadly not")
-    elif "have" in question or "will" in question:
-        kws = ["been", "gone", "be", "go"]
-        print(rand_opinion_on(" ".join(parse_subject_after_any(kws, question))))
-    else:
-        print(rand_yes_no())
-
-def handle_opinion():
-    opinions = ["i don't really know to be honest", "maybe", "i'm not quite sure"]
-    return rand_elem(opinions)

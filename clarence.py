@@ -2,7 +2,7 @@
 # Also contains functions to handle fetching info about clarence and building a response from that info
 from dataclasses import dataclass
 from enjoy import rand_elem
-from questions import QType, handle_yes_no, type_of_q
+from question_handlers import handle_yes_no
 from errors import err_with_sub, err_without_sub
 
 
@@ -10,24 +10,24 @@ from errors import err_with_sub, err_without_sub
 # CLASSES
 # ***********************************************************
 
-@dataclass
 class Info:
     """Stores info about clarence and how to handle that info."""
-    Detail: str
-    Templates: list[str]
-    Synonyms: list[str]
+    def __init__(self, detail, templates, synonyms):
+        self.Detail = detail
+        self.Templates = templates
+        self.Synonyms = synonyms
 
-@dataclass
+@dataclass(init=True)
 class Synonym:
     """Stores required and optional words needed in a sentence for a synonym to be valid."""
-    Required: list[str]
-    Optional: list[str]
+    Required = ""
+    Optional = []
 
 # ***********************************************************
 # VARIABLES
 # ***********************************************************
 
-being = ["i am _", "i happen to be _", "i am, in fact _"]
+being = ["i am _", "i happen to be _", "i am in fact, _"]
 
 # Everything that you need to know about clarence
 clarence = {
@@ -49,7 +49,7 @@ clarence = {
     "age": Info("25", being, ["old"]),
     "birthday": Info("6th May 1996", ["i was born on the _"], ["born"]),
     # Hobbies
-    "hobby": Info("hiking", ["i enjoy _", "i like to _"], ["hobbies", "pastime", "pastimes"]),
+    "hobby": Info("hiking", ["i enjoy _", "i like _"], ["hobbies", "pastime", "pastimes"]),
     "subject" : Info("art", ["my favorite subject is _"], ["lesson", "art"]),
     # Sport
     "sport": Info("chess", ["my favorite sport is _", "i quite fancy _"], ["sports", "exercise"]),
@@ -96,8 +96,6 @@ def handle_sentence(sentence):
         type = type_of_q(sentence)
         if type == QType.Fact:
             print(err_without_sub())
-        elif type == QType.Opinion:
-            pass
         elif type == QType.Yes_No:
             handle_yes_no()
 
