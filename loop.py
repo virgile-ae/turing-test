@@ -1,11 +1,11 @@
 # Contains the function which is to be looped over in main
 import prompt
 from questions import parse_question
-from clarence import handle_sentence
+from template import handle_sentence
 from gpt3 import get_response_gpt3
 from enjoy import rand_bool, rand_elem
+from errors import err_not_q
 
-not_q = ["is that even a question", "what are you trying to ask me?", "take a second to try and formulate what you're gonna say because that made absolutely no sense"]
 
 def handle_q(name):
     """
@@ -20,7 +20,7 @@ def handle_q(name):
 
     # Impossible to be a valid question if this short
     if len(question) < 3:
-        return print(rand_elem(not_q))
+        return print(err_not_q())
 
     if for_bot:
         print(handle_sentence(question))
