@@ -2,7 +2,7 @@
 import openai
 from errors import err_without_sub
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 def format_response(res):

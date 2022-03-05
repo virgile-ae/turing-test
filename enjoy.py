@@ -1,7 +1,6 @@
 # Contains functions to handle questions about enjoyment
 from random import getrandbits, randint, choice
 
-
 # ***********************************************************
 # RANDOM STUFF (literally) for things not in clarence object
 # ***********************************************************

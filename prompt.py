@@ -49,22 +49,24 @@ replies = ["cool", "nice", "pog", "lol", "*audible laughter*", "oh well", "as if
 
 
 # TODO: use return_question and ask_random_q in handle_q
-def return_question():
+def return_question(name):
     """Bounces back the question to the user."""
-    input(choice(questions) + "?\nEnter reply: ")
+    bot_speak(choice(questions))
+    ask_question(name)
     bot_speak(choice(replies))
 
 
-def ask_random_q():
+def ask_random_q(name):
     """Asks a random question."""
     whatQ = ["name", "favourite colour", "favourite film", "favourite tv show"]
     likeQ = ["star wars", "heavy metal", "the big bang theory"]
     howQ = ["old are you", "are you doing today", "is the weather where you live"]
     randNum = randint(1, 3)
     if randNum == 1:
-        input(f"what is your {rand_elem(whatQ)}?")
+        bot_speak(f"what is your {rand_elem(whatQ)}?")
     elif randNum == 2:
-        input(f"do you like {rand_elem(likeQ)}?")
+        bot_speak(f"do you like {rand_elem(likeQ)}?")
     else:
-        input(f"how {rand_elem(howQ)}?")
+        bot_speak(f"how {rand_elem(howQ)}?")
+    ask_question(name)
     bot_speak(choice(replies))

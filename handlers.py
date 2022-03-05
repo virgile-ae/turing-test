@@ -1,5 +1,5 @@
 # Contains the function which is to be looped over in main
-from prompt import *
+from prompt import ask_question, ask_random_q, return_question, bot_speak
 from gpt3 import get_response_gpt3
 from enjoy import rand_bool, rand_opinion_on, rand_yes_no
 from errors import err_not_q, err_without_sub
@@ -7,6 +7,7 @@ from text import find_keywords, sub_template, any_in, split_into_words, parse_su
     is_directed_at_bot, is_negative
 from q import QType
 from clarence import clarence
+from random import choice
 
 
 # ***********************************************************
@@ -93,9 +94,9 @@ def handle_q(name):
 
         # Randomly ask back to the user from time to time
         if rand_bool() and rand_bool():
-            return_question()
+            return_question(name)
         elif rand_bool():
-            ask_random_q()
+            ask_random_q(name)
     else:
         # Fallback if question is not about clarence
         bot_speak("Lemme think. ")

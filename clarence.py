@@ -1,7 +1,5 @@
 # Contains the clarence object with everything about clarence and the synonyms for any of clarence's properties
 # Also contains functions to handle fetching info about clarence and building a response from that info
-from dataclasses import dataclass
-
 from q import QType
 
 
@@ -10,16 +8,16 @@ from q import QType
 # ***********************************************************
 
 
-@dataclass()
 class Info:
     """Stores info about clarence and how to handle that info."""
-    Detail: str
-    NegativeDetail: str
-    Templates: list[str]
-    NegativeTemplates: list[str]
-    Synonyms: list[str]
-    AcceptedQTypes: list[QType]
-    AlreadyAsked: bool = False
+    def __init__(self, d, nd, templ, negtempl, syn, aqt, aa=False):
+        self.Detail = d
+        self.NegativeDetail = nd
+        self.Templates = templ
+        self.NegativeTemplates = negtempl
+        self.Synonyms = syn
+        self.AcceptedQTypes = aqt
+        self.AlreadyAsked = aa
 
 
 # ***********************************************************
