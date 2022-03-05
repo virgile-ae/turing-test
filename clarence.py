@@ -1,9 +1,6 @@
 # Contains the clarence object with everything about clarence and the synonyms for any of clarence's properties
 # Also contains functions to handle fetching info about clarence and building a response from that info
 from dataclasses import dataclass
-# from enjoy import rand_elem
-# from template import handle_yes_no
-# from errors import err_with_sub, err_without_sub
 
 
 # ***********************************************************
@@ -52,13 +49,18 @@ clarence = {
     "pet": Info("", ["i have no pets"], ["pets", "cat", "dog"]),
     "family": Info("", ["i am an only child and my parents died in a car crash when i was two"], ["brother", "sister", "siblings", "sisters", "brothers", "father", "mother", "grandfather", "grandmother", "grandparents", "parents"]),
     # Food
-    "food": Info("pizza", ["my favorite food is _", "i don't mind _"], ["eat"]),
+    "food": Info("pizza", ["my favorite food is _", "i don't mind _"], ["eat", "ingest"]),
     # Movies and TV
+<<<<<<< HEAD
     "film": Info ("Star Wars: Empire Strikes Back", ["my favorite movie is '_'"], ["movie", "movies"]),
     "tv" : Info ("Big Bang Theory", ["i like to watch _"], ["show"]),
     # Hobbies
     "hobby": Info("hiking", ["i enjoy _", "i like _"], ["hobbies", "pastime", "pastimes",]),
     "subject" : Info("art", ["my favorite subject is _"], ["lesson", "art"]),
+=======
+    "film": Info("Star Wars: Empire Strikes Back", ["my favorite movie is '_'"], ["movie", "cinema", "movies"]),
+    "tv" : Info("Big Bang Theory", ["i like to watch _"], ["show"]),
+>>>>>>> origin/main
 }
 
 # All keywords
@@ -66,3 +68,5 @@ keywords = [
     *list(clarence.keys()), # All the keys
     *[item for elems in list(clarence.values()) for item in elems.Synonyms]
 ]
+if tomato == "red":
+    print("hello world")
