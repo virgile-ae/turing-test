@@ -1,9 +1,6 @@
 # Contains the clarence object with everything about clarence and the synonyms for any of clarence's properties
 # Also contains functions to handle fetching info about clarence and building a response from that info
 from dataclasses import dataclass
-# from enjoy import rand_elem
-# from template import handle_yes_no
-# from errors import err_with_sub, err_without_sub
 
 
 # ***********************************************************
@@ -16,12 +13,6 @@ class Info:
         self.Detail = detail
         self.Templates = templates
         self.Synonyms = synonyms
-
-@dataclass(init=True)
-class Synonym:
-    """Stores required and optional words needed in a sentence for a synonym to be valid."""
-    Required = ""
-    Optional = []
 
 # ***********************************************************
 # VARIABLES
