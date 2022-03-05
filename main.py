@@ -1,14 +1,13 @@
 # Turing Test
 # List who is in the group or if you are working alone.
 # Shaurya and Virgile
-import prompt
-import loop
+from prompt import intro, outro
+from handlers import handle_q
 
-# Clarence introduces himself
-name = prompt.intro()
+name = intro()
 
-# The three questions to clarence
+# Interrogation of clarence
 for i in range(5):
-    loop.handle_q(name)
-# Clarence excuses himself
-prompt.outro()
+    handle_q(name)
+
+outro()
