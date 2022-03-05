@@ -3,7 +3,7 @@ import prompt
 from questions import parse_question
 from template import handle_sentence
 from gpt3 import get_response_gpt3
-from enjoy import rand_bool, rand_elem
+from enjoy import rand_bool 
 from errors import err_not_q
 
 
@@ -24,12 +24,12 @@ def handle_q(name):
 
     if for_bot:
         print(handle_sentence(question))
-        ## Check if subject can be handled
-        ## Else fallback on errors or generic reply
+        # Check if subject can be handled
+        # Else fallback on errors or generic reply
         if rand_bool() and rand_bool():
             prompt.return_question()
     else:
         # Fallback if question is not about clarence
-        print("Lemme think.")
+        print("Lemme think. ", end="")
         print(get_response_gpt3(" ".join(question)))
     

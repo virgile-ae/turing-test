@@ -37,7 +37,6 @@ def any_in(words, sentence):
 
 def type_of_q(question):
     """Finds all the possible types of question which QType might be"""
-    do = False
     for i in question:
         t = i.strip()
         if t in fact_kws:
@@ -56,20 +55,19 @@ def parse_question(question):
 
 def handle_yes_no(question):
     """Handles a yes or no question"""
+    enjoy = ["like", "enjoy"]
     if "do" in question:
-
-        if any_in(["like", "enjoy"], question):
-            kws = ["enjoy", "like"]
-            print(rand_opinion_on(" ".join(parse_subject_after_any(kws, question))))
+        if any_in(enjoy, question):
+            return rand_opinion_on(" ".join(parse_subject_after_any(enjoy, question)))
 
         elif any_in(["have", "own"], question):
             keywords = clarence.find_keywords(question)
             if clarence.clarence[keywords[[0]]]:
-                print(f"yes i do have a {clarence[keywords[0]]}")
+                return f"yes i do have a {clarence[keywords[0]]}"
             else:
-                print(f"sadly not")
+                return f"sadly not"
     elif "have" in question or "will" in question:
         kws = ["been", "gone", "be", "go"]
-        print(rand_opinion_on(" ".join(parse_subject_after_any(kws, question))))
+        return rand_opinion_on(" ".join(parse_subject_after_any(kws, question)))
     else:
-        print(rand_yes_no())
+        return rand_yes_no()

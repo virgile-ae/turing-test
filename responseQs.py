@@ -16,11 +16,7 @@ def question_ask():
   elif randNum == 3:
     return (input("Do You like" + howQ[random.randint(0,len(howQ))] + "?"))
 
-def question_respond():
-  """returns response to the user's answer to the bot's question"""
 
-  pass
-  
     
 
 

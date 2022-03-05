@@ -17,12 +17,6 @@ class Info:
         self.Templates = templates
         self.Synonyms = synonyms
 
-@dataclass(init=True)
-class Synonym:
-    """Stores required and optional words needed in a sentence for a synonym to be valid."""
-    Required = ""
-    Optional = []
-
 # ***********************************************************
 # VARIABLES
 # ***********************************************************
@@ -38,7 +32,7 @@ clarence = {
     "job": Info("secretary", ["i work as a _"], ["occupation", "work", "career"]),
     "income": Info("$68,500", ["i make _ a year"], ["money", "wealth", "cash", "dough"]),
     # Country
-    "home": Info("Melbourne, Australia", ["i live in _", "my current residence is in _"], ["country", "from"]),	
+    "home": Info("Melbourne, Australia", ["i live in _", "my current residence is in _"], ["country", "from", "live"]),	
     "ethnicity": Info("caucasian", being, ["race"]),
     # Body
     "sexuality": Info("gay", being, ["gay", "lgbt", "lgbtqia+", "lgbtq+", "rainbows"]),
@@ -48,23 +42,23 @@ clarence = {
     # Age
     "age": Info("25", being, ["old"]),
     "birthday": Info("6th May 1996", ["i was born on the _"], ["born"]),
-    # Hobbies
-    "hobby": Info("hiking", ["i enjoy _", "i like _"], ["hobbies", "pastime", "pastimes"]),
-    "subject" : Info("art", ["my favorite subject is _"], ["lesson", "art"]),
     # Sport
-    "sport": Info("chess", ["my favorite sport is _", "i quite fancy _"], ["sports", "exercise"]),
+    "sport": Info("chess", ["my favorite sport is _", "i quite fancy _"], ["sports", "exercise", "fitness"]),
     # Music
     "music": Info("heavy metal", ["my favorite type of music is _"], ["listen", "genre"]),
     # Mental wellbeing
-    "feeling": Info("not bad", ["i am feeling _", "i am doing _"], ["doing"]),
+    "feeling": Info("meh", ["i am feeling _", "i am doing _"], ["doing"]),
     # Pets and family
     "pet": Info("", ["i have no pets"], ["pets", "cat", "dog"]),
     "family": Info("", ["i am an only child and my parents died in a car crash when i was two"], ["brother", "sister", "siblings", "sisters", "brothers", "father", "mother", "grandfather", "grandmother", "grandparents", "parents"]),
     # Food
     "food": Info("pizza", ["my favorite food is _", "i don't mind _"], ["eat"]),
     # Movies and TV
-    "film": Info ("Star Wars: Empire Strikes Back", ["my favorite movie is '_'"], ["movie", "cinema", "movies"]),
+    "film": Info ("Star Wars: Empire Strikes Back", ["my favorite movie is '_'"], ["movie", "movies"]),
     "tv" : Info ("Big Bang Theory", ["i like to watch _"], ["show"]),
+    # Hobbies
+    "hobby": Info("hiking", ["i enjoy _", "i like _"], ["hobbies", "pastime", "pastimes",]),
+    "subject" : Info("art", ["my favorite subject is _"], ["lesson", "art"]),
 }
 
 # All keywords

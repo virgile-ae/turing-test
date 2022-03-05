@@ -1,0 +1,32 @@
+# ***********************************************************
+# CLASSES
+# ***********************************************************
+
+class Info
+    detail
+    templates
+    synonyms
+
+# ***********************************************************
+# VARIABLES
+# ***********************************************************
+
+being = ["i am _", "i happen to be _", "i am in fact, _"]
+
+# Everything that you need to know about clarence
+clarence = {
+    # Name
+    "name": Info("Clarence", ["my first name is _"], ["called"]),
+    "surname": Info("Smith", ["my surname is _"], []),
+    # Job
+    "job": Info("secretary", ["i work as a _"], ["occupation", "work", "career"]),
+    "income": Info("$68,500", ["i make _ a year"], ["money", "wealth", "cash", "dough"]),
+    # Country
+    "home": Info("Melbourne, Australia", ["i live in _", "my current residence is in _"], ["country", "from"]),	
+    "ethnicity": Info("caucasian", being, ["race"]),
+    # Body
+    "sexuality": Info("gay", being, ["gay", "lgbt", "lgbtqia+", "lgbtq+", "rainbows"]),
+    "gender": Info("male", being, ["sex", "male", "female"]),
+    "height": Info("179cm", ["sadly, i am _ tall", "i am _ tall"], ["tall", "small"]),
+    "weight": Info("73kg", ["i weigh _", "i weigh a total of _"], ["heavy", "weigh"]),
+    # Age

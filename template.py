@@ -1,33 +1,31 @@
 from clarence import keywords, clarence
 from errors import err_without_sub
 from questions import type_of_q, QType, handle_yes_no
-from enjoy import rand_elem
+from random import choice
 
 # ***********************************************************
 # TEMPLATING
 # ***********************************************************
 
-def sub_template(template: str, info):
+def sub_template(template, info):
     """Substitute the _ in the template with the info"""
-    index = template.index("_")
-    replaced = template[:index] + info + template[index+1:]
-    return replaced
+    return template.replace("_", info)
 
 def handle_sentence(sentence):
     """Generates a response from info about clarence"""
     subjects = find_keywords(sentence)
     if len(subjects) > 0:
         feature = clarence[subjects[0]]
-        templ = rand_elem(feature.Templates)
+        templ = choice(feature.Templates)
         if feature.Detail == "":
             return templ
         return sub_template(templ, feature.Detail)
     else:
         type = type_of_q(sentence)
         if type == QType.Fact:
-            print(err_without_sub())
+            return err_without_sub()
         elif type == QType.Yes_No:
-            handle_yes_no()
+            return handle_yes_no(sentence)
 
 
 # ***********************************************************

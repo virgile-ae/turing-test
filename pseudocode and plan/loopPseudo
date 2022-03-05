@@ -1,0 +1,26 @@
+function handle_q(name)
+    #Find who the question is directed to.
+    #Find type of question.
+    #Find subject of question.
+    #Handle the question based on these parameters.
+    # Splits into words and checks if the question is for the bot
+    question, for_bot = parse_question(prompt.ask_question(name).lower())
+    print("Clarence: ", end="")
+
+    # Impossible to be a valid question if this short
+    if len(question) < 3 then
+        return print(err_not_q())
+    endif
+
+    if for_bot then
+        print(handle_sentence(question))
+        ## Check if subject can be handled
+        ## Else fallback on errors or generic reply
+        if rand_bool() and rand_bool() then
+            prompt.return_question()
+        endif
+    endif
+    else 
+        # Fallback if question is not about clarence
+        print("Lemme think. ", end="")
+        print(get_response_gpt3(" ".join(question)))

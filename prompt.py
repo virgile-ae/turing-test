@@ -1,5 +1,6 @@
 # Contains functions which are used for the command prompt
-from enjoy import rand_elem
+from responseQs import question_ask
+from random import choice
 
 def intro():
     """Introduces clarence to the user."""
@@ -22,5 +23,5 @@ replies = ["cool", "nice", "pog", "lol", "*audible laughter*", "oh well", "as if
 
 def return_question():
     """Bounces back the question to the user."""
-    input(rand_elem(questions) + "?\nEnter reply: ")
-    print(rand_elem(replies))
+    input(choice(questions) + "?\nEnter reply: ")
+    print(choice(replies))
