@@ -61,10 +61,10 @@ clarence = {
     "pet": Info("", ["i have no pets"], ["pets", "cat", "dog"]),
     "family": Info("", ["i am an only child and my parents died in a car crash when i was two"], ["brother", "sister", "siblings", "sisters", "brothers", "father", "mother", "grandfather", "grandmother", "grandparents", "parents"]),
     # Food
-    "food": Info("pizza", ["my favorite food is _", "i don't mind _"], ["eat"]),
+    "food": Info("pizza", ["my favorite food is _", "i don't mind _"], ["eat", "ingest"]),
     # Movies and TV
-    "film": Info ("Star Wars: Empire Strikes Back", ["my favorite movie is '_'"], ["movie", "cinema", "movies"]),
-    "tv" : Info ("Big Bang Theory", ["i like to watch _"], ["show"]),
+    "film": Info("Star Wars: Empire Strikes Back", ["my favorite movie is '_'"], ["movie", "cinema", "movies"]),
+    "tv" : Info("Big Bang Theory", ["i like to watch _"], ["show"]),
 }
 
 # All keywords
@@ -72,3 +72,5 @@ keywords = [
     *list(clarence.keys()), # All the keys
     *[item for elems in list(clarence.values()) for item in elems.Synonyms]
 ]
+if tomato == "red":
+    print("hello world")
