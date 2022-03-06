@@ -32,7 +32,12 @@ def handle_yes_no(question):
                 return f"sadly, i don't have {subject}"
     elif any_in(["have", "will"], question):
         kws = ["been", "gone", "be", "go"]
-        return rand_opinion_on(" ".join(parse_subject_after(kws, question)))
+        not_these = ["recently", "yesterday"]
+        words = parse_subject_after(kws, question)
+        words = " ".join(list(filter(lambda x: x not in not_these, words)))
+        if rand_bool():
+            return f"sadly, i haven't {words}"
+        return f"funny you should say that. i {words} last weekend"
     else:
         return rand_yes_no()
 
@@ -52,6 +57,9 @@ def handle_sentence(sentence):
             subjects = ["feeling"]
     if len(subjects) > 0:
         feature = clarence[subjects[0]]
+        for i in subjects:
+            if clarence[i].Priority.value > feature.Priority.value:
+                feature = clarence[i]
         # Was too long so it was extracted into a variable
         negs = feature.NegativeTemplates
         is_neg = is_negative(sentence)
@@ -64,13 +72,12 @@ def handle_sentence(sentence):
         elif is_neg:
             return sub_template(templ, feature.NegativeDetail)
         return generated + sub_template(templ, feature.Detail)
-    else:
-        qtype = type_of_q(sentence)
-        if qtype == QType.Fact:
-            # TODO: could also be error with sub so could use parse_subject_after
-            return err_without_sub()
-        elif qtype == QType.Yes_No:
-            return handle_yes_no(sentence)
+    qtype = type_of_q(sentence)
+    if qtype == QType.Yes_No:
+        return handle_yes_no(sentence)
+    else:       # if qtype == QType.Fact:
+        # TODO: could also be error with sub so could use parse_subject_after
+        return err_without_sub()
 
 
 def handle_q(name):
@@ -80,7 +87,6 @@ def handle_q(name):
     Find subject of question.
     Handle the question based on these parameters.
     """
-    # Splits into words and checks if the question is for the bot
     question = ask_question(name).lower()
     words = split_into_words(question)
 
@@ -95,9 +101,9 @@ def handle_q(name):
         # Randomly ask back to the user from time to time
         if rand_bool() and rand_bool():
             return_question(name)
-        elif rand_bool():
+        elif rand_bool() and rand_bool():
             ask_random_q(name)
     else:
         # Fallback if question is not about clarence
-        bot_speak("Lemme think. ")
+        bot_speak(choice(["Lemme think.", "Gimme a sec."]))
         bot_speak(get_response_gpt3(" ".join(words)))

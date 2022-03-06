@@ -39,7 +39,7 @@ def parse_subject_after(kws, words):
 # TEMPLATING
 # ***********************************************************
 
-def sub_template(template, info):
+def sub_template(template, info) -> str:
     """Substitute the _ in the template with the info"""
     return template.replace("_", info)
 

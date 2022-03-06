@@ -1,5 +1,7 @@
 # Contains functions to handle questions about enjoyment
 from random import getrandbits, randint, choice
+from text import sub_template
+
 
 # ***********************************************************
 # RANDOM STUFF (literally) for things not in clarence object
@@ -16,17 +18,14 @@ def rand_elem(elems):
     return elems[index]
 
 
-# TODO: templates for rand_opinion_on
 def rand_opinion_on(kw):
     """Generates a response about question asking about an opinion on something."""
+    like = ["i actually quite like _, so yeh", "i am a big fan of _"]
+    dislike = ["to be perfectly honest, i don't really like _, so nah", "surprisingly, i hate _"]
     if rand_bool():
-        return f"to be perfectly honest, i don't really like {kw}, so nah"
-    return f"i actually quite like {kw}, so yeh"
+        return sub_template(choice(like), kw)
+    return sub_template(choice(dislike), kw)
 
-
-# ***********************************************************
-# FIND RESPONSE
-# ***********************************************************
 
 yes = ["yep", "yes", "totally", "kinda", "maybe"]
 no = ["nah", "not really", "very little", "don't remember"]

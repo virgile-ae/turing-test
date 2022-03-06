@@ -11,7 +11,7 @@ from enjoy import rand_elem
 def intro():
     """Introduces clarence to the user. Returns the name of the user"""
     sentence = "\n".join(["hello, my name is clarence smith. feel free to ask me any questions.",
-                          "by the way, i have severe short term memory issues so please take that into consideration "
+                          "by the way, i have some short term memory issues so please take that into consideration "
                           "when conversing with me."])
     bot_speak(sentence)
     name = input("Clarence: what is your name?\nUser: ")
@@ -21,7 +21,9 @@ def intro():
 
 def outro():
     """Excuses clarence from the conversation."""
+    exits = ["*runs away*", "*leaves abruptly*", "*shuffles away while maintaining eye contact*"]
     bot_speak("Well it's been nice, but I have to go. See ya later.")
+    bot_speak(choice(exits))
 
 
 # **************************************************************
@@ -43,12 +45,11 @@ def ask_question(name):
 # ASKING QUESTIONS
 # **************************************************************
 
-questions = ["what about you", "and you", "hbu"]
+questions = ["what about you", "and you?", "hbu"]
 replies = ["cool", "nice", "pog", "lol", "*audible laughter*", "oh well", "as if anyone cared", "*awkward stare*",
            "sure", "hmmm", "*awkward silence*", "oh. anyways..."]
 
 
-# TODO: use return_question and ask_random_q in handle_q
 def return_question(name):
     """Bounces back the question to the user."""
     bot_speak(choice(questions))
